@@ -1,103 +1,411 @@
+'use client';
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Link from "next/link";
 import Image from "next/image";
+import { Coffee, Mail, Phone } from "lucide-react";
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Время анимации в ms
+      once: true,     // Анимация запускается только один раз
+    });
+  }, []);
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-[#121212] text-white">
+      {/* Navigation */}
+      <nav className="container mx-auto px-4 py-6 flex justify-between items-center sticky top-0 z-50 backdrop-blur-sm">
+        <div className="flex items-center">
+          <Link href="/" className="text-[#00FF66] font-bold text-xl">
+            StarBucks
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="hidden md:flex space-x-8">
+          <Link href="#" className="text-white hover:text-[#00FF66]">
+            Home
+          </Link>
+          <Link href="#" className="text-white hover:text-[#00FF66]">
+            About
+          </Link>
+          <Link href="#" className="text-white hover:text-[#00FF66]">
+            Menu
+          </Link>
+          <Link href="#" className="text-white hover:text-[#00FF66]">
+            Contact
+          </Link>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-8 items-center relative">
+        <div
+          data-aos="fade-right"
+          data-aos-offset="1"
+          data-aos-easing="ease-in-sine"
+          className="relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            New Cafe <br />
+            <span className="text-[#00FF66]">by StarBucks</span>
+          </h1>
+          <p className="text-gray-400 mb-8 max-w-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis,
+            pulvinar dapibus leo.
+          </p>
+          <div className="flex space-x-4">
+            <button className="bg-[#00FF66] text-black px-6 py-2 rounded-full font-medium hover:bg-opacity-80 transition">
+              Reserve a table
+            </button>
+            <button className="border border-gray-600 px-6 py-2 rounded-full font-medium hover:border-[#00FF66] hover:text-[#00FF66] transition">
+              Menu
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="flex space-x-12 mt-12">
+            <div>
+              <h3 className="text-2xl font-bold">9k+</h3>
+              <p className="text-gray-400 text-sm">Happy Customers</p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold">2k+</h3>
+              <p className="text-gray-400 text-sm">Positive Reviews</p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold">28+</h3>
+              <p className="text-gray-400 text-sm">Locations</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="absolute top-0 right-0 bg-[#00FF66] text-black rounded-full p-2 z-20">
+            <span className="font-bold">40% OFF</span>
+          </div>
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+            src="/placeholder.png"
+            alt="Coffee Cup"
+            width={400}
+            height={500}
+            className="mx-auto"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        </div>
+
+        {/* Background pattern */}
+        <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+          <svg width="100%" height="100%" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0,0 C100,100 200,100 300,0 C400,-100 500,-100 600,0 C700,100 800,100 900,0 L900,900 L0,900 Z"
+              fill="#00FF66"
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="bg-[#1A1A1A] rounded-xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex items-center space-x-4 p-4 rounded-lg hover:bg-[#222222] transition">
+            <div className="bg-[#00FF66] bg-opacity-10 p-3 rounded-full">
+              <Coffee className="w-6 h-6 text-[#00FF66]" />
+            </div>
+            <div>
+              <h3 className="font-bold">Tasty</h3>
+              <p className="text-gray-400 text-sm">Delicious coffee</p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-4 p-4 rounded-lg hover:bg-[#222222] transition">
+            <div className="bg-[#00FF66] bg-opacity-10 p-3 rounded-full">
+              <Coffee className="w-6 h-6 text-[#00FF66]" />
+            </div>
+            <div>
+              <h3 className="font-bold">Healthy</h3>
+              <p className="text-gray-400 text-sm">Organic ingredients</p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-4 p-4 rounded-lg hover:bg-[#222222] transition">
+            <div className="bg-[#00FF66] bg-opacity-10 p-3 rounded-full">
+              <Coffee className="w-6 h-6 text-[#00FF66]" />
+            </div>
+            <div>
+              <h3 className="font-bold">Sustainable</h3>
+              <p className="text-gray-400 text-sm">Eco-friendly packaging</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* We Make Delicious Section */}
+      <section className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center relative">
+        <div className="grid grid-cols-2 gap-4">
           <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+            src="/placeholder.png?height=300&width=250"
+            alt="Cafe Interior 1"
+            width={250}
+            height={300}
+            className="rounded-lg"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
           <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+            src="/placeholder.png?height=300&width=250"
+            alt="Cafe Interior 2"
+            width={250}
+            height={300}
+            className="rounded-lg mt-8"
           />
-          Go to nextjs.org →
-        </a>
+        </div>
+
+        <div>
+          <div className="inline-block bg-[#00FF66] text-black rounded-full px-3 py-1 text-sm font-medium mb-4">
+            40% OFF
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            We make <br />
+            <span className="text-[#00FF66]">delicious</span>
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis,
+            pulvinar dapibus leo. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button className="bg-[#00FF66] text-black px-6 py-2 rounded-full font-medium hover:bg-opacity-80 transition">
+            Learn more
+          </button>
+        </div>
+
+        {/* Background pattern */}
+        <div className="absolute bottom-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <svg width="100%" height="100%" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0,800 C100,700 200,700 300,800 C400,900 500,900 600,800 C700,700 800,700 900,800 L900,0 L0,0 Z"
+              fill="#00FF66"
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="container mx-auto px-4 py-16 relative">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8">
+          New Our <br />
+          <span className="text-[#00FF66]">Products</span>
+        </h2>
+        <p className="text-gray-400 mb-12 max-w-2xl">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis,
+          pulvinar dapibus leo. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Product 1 */}
+          <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay={200} className="bg-[#1A1A1A] rounded-xl p-6 flex flex-col">
+            <div className="relative mb-4">
+              <Image
+                src="/placeholder.png?height=200&width=200"
+                alt="Coffee Product 1"
+                width={200}
+                height={200}
+                className="mx-auto"
+              />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Flat White</h3>
+            <p className="text-gray-400 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className="flex justify-between items-center mt-auto">
+              <span className="font-bold text-lg">$4.99</span>
+              <button className="bg-[#00FF66] text-black px-4 py-1 rounded-full text-sm font-medium hover:bg-opacity-80 transition">
+                Buy now
+              </button>
+            </div>
+          </div>
+
+          {/* Product 2 */}
+          <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay={400} className="bg-[#1A1A1A] rounded-xl p-6 flex flex-col">
+            <div className="relative mb-4">
+              <Image
+                src="/placeholder.png?height=200&width=200"
+                alt="Coffee Product 2"
+                width={200}
+                height={200}
+                className="mx-auto"
+              />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Flat White</h3>
+            <p className="text-gray-400 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className="flex justify-between items-center mt-auto">
+              <span className="font-bold text-lg">$4.99</span>
+              <button className="bg-[#00FF66] text-black px-4 py-1 rounded-full text-sm font-medium hover:bg-opacity-80 transition">
+                Buy now
+              </button>
+            </div>
+          </div>
+
+          {/* Product 3 */}
+          <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-delay={600} className="bg-[#1A1A1A] rounded-xl p-6 flex flex-col">
+            <div className="relative mb-4">
+              <Image
+                src="/placeholder.png?height=200&width=200"
+                alt="Coffee Product 3"
+                width={200}
+                height={200}
+                className="mx-auto"
+              />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Cappuccino</h3>
+            <p className="text-gray-400 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className="flex justify-between items-center mt-auto">
+              <span className="font-bold text-lg">$5.99</span>
+              <button className="bg-[#00FF66] text-black px-4 py-1 rounded-full text-sm font-medium hover:bg-opacity-80 transition">
+                Buy now
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Events Section */}
+      <section className="container mx-auto px-4 py-16 relative">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12">
+          Our New <br />
+          <span className="text-[#00FF66]">Events</span>
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Event 1 */}
+          <div className="relative rounded-xl overflow-hidden group">
+            <Image
+              src="/placeholder.png?height=250&width=400"
+              alt="Event 1"
+              width={400}
+              height={250}
+              className="w-full h-48 object-cover"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
+              <h3 className="font-bold text-lg mb-2">TWO COFFEE FOR 1 PRICE</h3>
+              <button className="bg-[#00FF66] text-black px-4 py-1 rounded-full text-sm font-medium hover:bg-opacity-80 transition w-max">
+                Learn more
+              </button>
+            </div>
+          </div>
+
+          {/* Event 2 */}
+          <div className="relative rounded-xl overflow-hidden group">
+            <Image
+              src="/placeholder.png?height=250&width=400"
+              alt="Event 2"
+              width={400}
+              height={250}
+              className="w-full h-48 object-cover"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
+              <h3 className="font-bold text-lg mb-2">FREE COFFEE FOR 3 TIMES</h3>
+              <button className="bg-[#00FF66] text-black px-4 py-1 rounded-full text-sm font-medium hover:bg-opacity-80 transition w-max">
+                Learn more
+              </button>
+            </div>
+          </div>
+
+          {/* Event 3 */}
+          <div className="relative rounded-xl overflow-hidden group">
+            <Image
+              src="/placeholder.png?height=250&width=400"
+              alt="Event 3"
+              width={400}
+              height={250}
+              className="w-full h-48 object-cover"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
+              <h3 className="font-bold text-lg mb-2">CHOOSE AS YOU CHOOSE IT</h3>
+              <button className="bg-[#00FF66] text-black px-4 py-1 rounded-full text-sm font-medium hover:bg-opacity-80 transition w-max">
+                Learn more
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center relative">
+        <div>
+          <div className="inline-block bg-[#00FF66] text-black rounded-full px-3 py-1 text-sm font-medium mb-4">
+            40% OFF
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Our <br />
+            <span className="text-[#00FF66]">Contacts</span>
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis,
+            pulvinar dapibus leo. Sed do eiusmod tempor incididunt ut labore.
+          </p>
+
+          <div className="flex items-center space-x-2 mb-4">
+            <Mail className="text-[#00FF66]" />
+            <span>info@starbucks.com</span>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Phone className="text-[#00FF66]" />
+            <span>+1 (555) 123-45-67</span>
+          </div>
+        </div>
+
+        <div className="relative">
+          <Image
+            src="/placeholder.png"
+            alt="Contact Image"
+            width={350}
+            height={400}
+            className="rounded-lg"
+          />
+        </div>
+
+        {/* Background pattern */}
+        <div className="absolute bottom-0 right-0 w-full h-full opacity-10 pointer-events-none">
+          <svg width="100%" height="100%" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M800,0 C700,100 600,100 500,0 C400,-100 300,-100 200,0 C100,100 0,100 -100,0 L-100,800 L800,800 Z"
+              fill="#00FF66"
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#1A1A1A] py-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+            <Link href="/" className="text-[#00FF66] font-bold text-xl mb-4 md:mb-0">
+              StarBucks
+            </Link>
+
+            <div className="flex space-x-8">
+              <Link href="#" className="text-white hover:text-[#00FF66]">
+                Home
+              </Link>
+              <Link href="#" className="text-white hover:text-[#00FF66]">
+                About
+              </Link>
+              <Link href="#" className="text-white hover:text-[#00FF66]">
+                Menu
+              </Link>
+              <Link href="#" className="text-white hover:text-[#00FF66]">
+                Contact
+              </Link>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+            <p>© {new Date().getFullYear()} StarBucks. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+
